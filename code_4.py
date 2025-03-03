@@ -60,7 +60,7 @@ if __name__ == "__main__":
                 print("No data found.")
 
         elif choice == '5':
-            print("Goodbye!")
+            print("Later!")
             break
 
         else:
