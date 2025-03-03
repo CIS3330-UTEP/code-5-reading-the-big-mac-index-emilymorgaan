@@ -22,16 +22,23 @@ def get_big_mac_price_by_country(country_code):
 
 # Function to find the country with the cheapest Big Mac in a given year 
 def get_the_cheapest_big_mac_price_by_year(year):
+    # data = df[df['year'] == year]
+    # return data.nsmallest(1, 'dollar_price')[['name', 'iso_a3', 'dollar_price']].values[0] 
+    # # Return name, code, and price
+
     data = df[df['year'] == year]
-    return data.nsmallest(1, 'dollar_price')[['name', 'iso_a3', 'dollar_price']].values[0] 
-    # Return name, code, and price
+    cheapest = data.nsmallest(1, 'dollar_price')[['name', 'iso_a3', 'dollar_price']].values[0]
+    return f"{cheapest[0]}({cheapest[1]}): ${cheapest[2]}"
 
 # Function to find the country with the most expensive Big Mac in a given year
 def get_the_most_expensive_big_mac_price_by_year(year):
-    data = df[df['year'] == year]
-    return data.nlargest(1, 'dollar_price')[['name', 'iso_a3', 'dollar_price']].values[0]
-    # Return name, code, and price
+    # data = df[df['year'] == year]
+    # return data.nlargest(1, 'dollar_price')[['name', 'iso_a3', 'dollar_price']].values[0]
+    # # Return name, code, and price
 
+    data = df[df['year'] == year]
+    most_expensive = data.nlargest(1, 'dollar_price')[['name', 'iso_a3', 'dollar_price']].values[0]
+    return f"{most_expensive[0]}({most_expensive[1]}): ${most_expensive[2]}"
 
 if __name__ == "__main__":
     while True:
@@ -51,7 +58,7 @@ if __name__ == "__main__":
             print(f"Big Mac price in {country_code} in {year}: ${price}" if price else "No data found.")
             # Print the Big Mac price for the specified country and year if the price exists.
             # If there is no data (i.e., price is None or evaluates as False), print "No data found."
-            
+
         elif choice == '2':
             country_code = input("Enter country code (e.g., ARG): ")
             price = get_big_mac_price_by_country(country_code)
